@@ -58,7 +58,7 @@ func TestExecuteCommand(t *testing.T) {
 		return
 	}
 
-	mgr := NewPandoraAccountManager("", "", targetDeviceId, context.Background())
+	mgr := NewPandoraDeviceManager("", "", targetDeviceId, context.Background())
 	mgr.sessionId = sessionId
 
 	assert.Equal(t, nil, mgr.SendCommand(Check))
@@ -79,7 +79,7 @@ func TestKeepAlive(t *testing.T) {
 		ctx.Response.SetStatusCode(200)
 	}
 
-	mgr := NewPandoraAccountManager("", "", 0, context.Background())
+	mgr := NewPandoraDeviceManager("", "", 0, context.Background())
 	mgr.sessionId = sessionId
 
 	assert.Equal(t, nil, mgr.sendKeepAlive())
@@ -109,7 +109,7 @@ func TestValidPassword(t *testing.T) {
 		return
 	}
 
-	mgr := NewPandoraAccountManager(testLogin, encryptedPassword, 0, context.Background())
+	mgr := NewPandoraDeviceManager(testLogin, encryptedPassword, 0, context.Background())
 
 	assert.Equal(t, nil, mgr.Authorize())
 	assert.Equal(t, expectedSid, mgr.sessionId)
@@ -137,7 +137,7 @@ func TestInvalidPassword(t *testing.T) {
 		return
 	}
 
-	mgr := NewPandoraAccountManager(testLogin, encryptedPassword, 0, context.Background())
+	mgr := NewPandoraDeviceManager(testLogin, encryptedPassword, 0, context.Background())
 
 	assert.Equal(t, "invalid login or password", mgr.Authorize().Error())
 }

@@ -26,7 +26,7 @@ type PandoraAccountManager struct {
 	keepAliveMutex    sync.Mutex
 }
 
-func NewPandoraAccountManager(login string, encryptedPassword string, deviceId int64, ctx context.Context) *PandoraAccountManager {
+func NewPandoraDeviceManager(login string, encryptedPassword string, deviceId int64, ctx context.Context) *PandoraAccountManager {
 	innerCtx, cancel := context.WithCancel(ctx)
 
 	mgr := &PandoraAccountManager{
